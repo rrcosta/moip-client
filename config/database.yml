@@ -1,0 +1,21 @@
+# PostgreSQL. Versions 9.1 and up are supported.
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['MOIPAPP_DATABASE_USER'] %>
+  password: <%= ENV['MOIPAPP_DATABASE_PASSWORD'] %>
+
+development:
+  <<: *default
+  database: moipapp_development
+
+test:
+  <<: *default
+  database: moipapp_test
+
+production:
+  <<: *default
+  database: moipapp_production
+  username: <%= ENV['PRD_MOIPAPP_DATABASE_USER'] %>
+  password: <%= ENV['PRD_MOIPAPP_DATABASE_PASSWORD'] %>
